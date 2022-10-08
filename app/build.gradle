@@ -42,11 +42,15 @@ android {
         }
 
 
-        buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/\"")
-        buildConfigField("String", "SMALL_IMAGE_URL", "\"https://image.tmdb.org/t/p/w200\"")
-        buildConfigField("String", "LARGE_IMAGE_URL", "\"https://image.tmdb.org/t/p/w500\"")
+//        buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/\"")
+//        buildConfigField("String", "SMALL_IMAGE_URL", "\"https://image.tmdb.org/t/p/w200\"")
+//        buildConfigField("String", "LARGE_IMAGE_URL", "\"https://image.tmdb.org/t/p/w500\"")
         buildConfigField("String", "ORIGINAL_IMAGE_URL", "\"https://image.tmdb.org/t/p/original\"")
-        buildConfigField("String", "TMDB_API_KEY", credentialProperty['TMDB_API_KEY'])
+//        buildConfigField("String", "TMDB_API_KEY", credentialProperty['TMDB_API_KEY'])
+
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file("local.properties").newDataInputStream())
+        buildConfigField "String", "TMDB_API_KEY", "\"${properties.getProperty("TMDB_API_KEY")}\""
     }
 
     buildTypes {

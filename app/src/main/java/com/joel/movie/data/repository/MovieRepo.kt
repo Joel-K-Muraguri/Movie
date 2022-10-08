@@ -7,5 +7,4 @@ interface MovieRepo {
 
     suspend fun getPopularMovie(page : Int) : MoviePopular
 
-
 }
