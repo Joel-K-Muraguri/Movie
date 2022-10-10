@@ -6,9 +6,12 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.joel.movie.data.paginate.MovieSource
 import com.joel.movie.model.responses.mvpopular.MovieResult
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class MainViewModel(
+@HiltViewModel
+class MainViewModel @Inject constructor(
     private val repository: MovieRepository
 ) : ViewModel()  {
 

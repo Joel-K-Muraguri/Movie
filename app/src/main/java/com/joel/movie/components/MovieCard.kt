@@ -1,9 +1,8 @@
 package com.joel.movie.components
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
@@ -12,8 +11,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImagePainter
 import coil.compose.SubcomposeAsyncImage
 import coil.compose.SubcomposeAsyncImageContent
@@ -27,20 +29,41 @@ fun MovieCard(movie: MovieResult){
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+            .padding(8.dp)
     ) {
         Card(
-            modifier = Modifier.clickable {
-
-            },
-            elevation = 5.dp
+            modifier = Modifier
+                .height(350.dp)
+                .clickable {},
+            elevation = 5.dp,
+            shape = RoundedCornerShape(20.dp)
         )
         {
-            MovieImage(imageUrl = BuildConfig.ORIGINAL_IMAGE_URL +  movie.poster_path)
+            SubcomposeAsyncImage(
+                model = BuildConfig.ORIGINAL_IMAGE_URL + movie.poster_path,
+                contentDescription = movie.title,
+                modifier = Modifier
+                    .width(230.dp)
+                    .height(230.dp),
+                contentScale = ContentScale.FillBounds
+            ) {
+
+                val state = painter.state
+                if (state is AsyncImagePainter.State.Loading || state is AsyncImagePainter.State.Error){
+                    CircularProgressIndicator(
+                        modifier = Modifier
+                            .scale(0.5f),
+                        color = Color.Yellow
+                    )
+                }
+                else{
+                    SubcomposeAsyncImageContent()
+                }
+            }
         }
         MovieTitle(title = movie.title)
     }
-    
-
 }
 
 @Composable
@@ -49,7 +72,9 @@ fun MovieImage(imageUrl : String){
         model = imageUrl,
         contentDescription = imageUrl,
         modifier = Modifier
-            .size(250.dp)
+            .width(250.dp)
+            .height(250.dp),
+        contentScale = ContentScale.Fit
     ) {
 
         val state = painter.state
@@ -71,7 +96,10 @@ fun MovieTitle(
 ){
     Text(
         text = title,
-        style = MaterialTheme.typography.h5,
-        overflow = TextOverflow.Ellipsis
+//        style = MaterialTheme.typography.h6,
+        overflow = TextOverflow.Clip,
+        maxLines = 2,
+        fontSize = 14.sp,
+
     )
 }

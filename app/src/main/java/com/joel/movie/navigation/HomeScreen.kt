@@ -1,14 +1,10 @@
 package com.joel.movie.navigation
 
 import androidx.compose.foundation.layout.RowScope
-import androidx.compose.foundation.layout.size
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color.Companion.Black
 import androidx.compose.ui.graphics.Color.Companion.LightGray
-import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -17,8 +13,6 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.joel.movie.R
-import com.joel.movie.ui.theme.WhiteColor
 import com.joel.movie.ui.theme.YellowishColor
 
 @Composable
@@ -26,16 +20,17 @@ fun HomeScreen(){
 
     val navController = rememberNavController()
 
-    Scaffold(
-        bottomBar = {
-                    BottomBar(navController = navController)
-        },
+    Surface() {
+        Scaffold(
+            bottomBar = {
+                BottomBar(navController = navController)
+            },
+        ) {
+            BottomNavGraph(navController)
 
-
-    ) {
-        BottomNavGraph(navController)
-
+        }
     }
+
 
 }
 

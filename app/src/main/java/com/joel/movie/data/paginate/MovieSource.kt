@@ -11,7 +11,10 @@ class MovieSource (
 
 
     override fun getRefreshKey(state: PagingState<Int, MovieResult>): Int? {
-        TODO("Not yet implemented")
+        return state.anchorPosition?.let { position ->
+            val anchorPosition = state.closestPageToPosition(position)
+            anchorPosition?.prevKey?.plus(1) ?: anchorPosition?.nextKey?.minus(1)
+        }
     }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MovieResult> {
