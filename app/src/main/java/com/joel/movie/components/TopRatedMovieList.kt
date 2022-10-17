@@ -12,7 +12,6 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.compose.rememberNavController
 import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -20,47 +19,39 @@ import androidx.paging.compose.items
 import com.joel.movie.data.paginate.ErrorItem
 import com.joel.movie.data.paginate.ItemsLoading
 import com.joel.movie.data.repository.MainViewModel
-import com.joel.movie.model.responses.mvpopular.MovieResult
-import com.joel.movie.utils.Constants
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import com.joel.movie.model.responses.topratedmovie.TopRatedResult
 import kotlinx.coroutines.flow.Flow
 
 @Composable
-fun MoviePopularItems(mainViewModel : MainViewModel = hiltViewModel(), navigator: DestinationsNavigator){
+fun MovieTopRatedItems(mainViewModel : MainViewModel = hiltViewModel()){
     Box(contentAlignment = Alignment.Center) {
         Column() {
             Text(
-                text = "Popular Movies",
+                text = "Top Rated Movies",
                 style = MaterialTheme.typography.h6
             )
             Spacer(modifier = Modifier.height(4.dp))
-            MoviePopularList(popularMovies = mainViewModel.popularMovies, navigator)
+            MovieTopRatedList(topRatedMovies = mainViewModel.topRatedMovies)
         }
     }
 }
 
 @Composable
-fun MoviePopularList(
-    popularMovies : Flow<PagingData<MovieResult>>,
-    navigator : DestinationsNavigator
+fun MovieTopRatedList(
+    topRatedMovies : Flow<PagingData<TopRatedResult>>
 ){
-    val lazyMovieItems = popularMovies.collectAsLazyPagingItems()
-    val navController = rememberNavController()
+    val lazyMovieItems = topRatedMovies.collectAsLazyPagingItems()
 
     LazyRow(
 
     ){
         items(lazyMovieItems){ movie ->
-            PopularMovieCard(
-                movie = movie!!,
-                navigator = navigator
-
-            )
+            TopRatedMovieCard(movie = movie!!)
         }
 
         lazyMovieItems.apply {
             when{
-                
+
                 loadState.refresh is LoadState.Loading -> {
                     item {
                         Box(
@@ -78,7 +69,7 @@ fun MoviePopularList(
                     }
                 }
                 loadState.append is LoadState.Loading -> {
-                    item { 
+                    item {
                         ItemsLoading(modifier = Modifier.fillMaxWidth())
                     }
                 }

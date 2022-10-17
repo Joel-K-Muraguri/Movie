@@ -1,9 +1,7 @@
 package com.joel.movie.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.joel.movie.R
-import com.joel.movie.data.repository.MainViewModel
 import com.joel.movie.screens.MovieScreen
 import com.joel.movie.screens.PopularScreen
 import com.joel.movie.screens.TvShowScreen

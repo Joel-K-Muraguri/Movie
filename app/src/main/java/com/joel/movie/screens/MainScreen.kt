@@ -18,8 +18,10 @@ import com.joel.movie.components.SearchAction
 import com.joel.movie.components.TopSection
 import com.joel.movie.navigation.TabItem
 import com.joel.movie.ui.theme.YellowishColor
+import com.ramcosta.composedestinations.annotation.Destination
 import kotlinx.coroutines.launch
 
+@Destination(start = true)
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun MainScreen(){

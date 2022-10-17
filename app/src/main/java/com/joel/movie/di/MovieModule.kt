@@ -29,7 +29,7 @@ object MovieModule {
 
     @Provides
     @Singleton
-    fun providesRepository(apiService: MovieApiService) : MovieRepo =  MovieRepository(apiService)
+    fun providesRepository(apiService: MovieApiService) : MovieRepository =  MovieRepository(apiService)
 
 
 
