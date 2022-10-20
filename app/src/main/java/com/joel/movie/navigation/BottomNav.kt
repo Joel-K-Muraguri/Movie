@@ -15,7 +15,7 @@ sealed class BottomNav(
 
     object Search : BottomNav(
         icon = R.drawable.ic_baseline_search_24,
-        title = "Favourites",
+        title = "Search",
         route = "search_route"
     )
 

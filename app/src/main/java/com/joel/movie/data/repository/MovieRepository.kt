@@ -1,9 +1,10 @@
 package com.joel.movie.data.repository
 
 import android.util.Log
-import com.joel.movie.data.network.MovieApiService
+import com.joel.movie.data.network.ApiService
 import com.joel.movie.model.responses.mvpopular.MoviePopular
 import com.joel.movie.model.responses.mvpopular.MovieResult
+import com.joel.movie.model.responses.search.SearchItem
 import com.joel.movie.model.responses.topratedmovie.TopRatedMovie
 import com.joel.movie.model.responses.topratedtv.TopRatedTvShows
 import com.joel.movie.model.responses.tvpopular.TvPopular
@@ -15,7 +16,7 @@ import javax.inject.Singleton
 
 @Singleton
 class MovieRepository @Inject constructor(
-    private val apiService: MovieApiService
+    private val apiService: ApiService
 )  {
 
     suspend fun getPopularMovie(page: Int): MoviePopular {
@@ -67,5 +68,9 @@ class MovieRepository @Inject constructor(
 
     suspend fun getTopRatedTvShows(page : Int): TopRatedTvShows {
         return apiService.getTopRatedTvShow(page)
+    }
+
+    suspend fun searchItems(page: Int, query : String) : SearchItem{
+        return apiService.itemSearch(query, page)
     }
 }

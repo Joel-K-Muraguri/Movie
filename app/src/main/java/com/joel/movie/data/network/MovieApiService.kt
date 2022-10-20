@@ -2,6 +2,7 @@ package com.joel.movie.data.network
 
 import com.joel.movie.model.responses.mvpopular.MoviePopular
 import com.joel.movie.model.responses.mvpopular.MovieResult
+import com.joel.movie.model.responses.search.SearchItem
 import com.joel.movie.model.responses.topratedmovie.TopRatedMovie
 import com.joel.movie.model.responses.topratedtv.TopRatedTvShows
 import com.joel.movie.model.responses.tvpopular.TvPopular
@@ -52,9 +53,9 @@ interface ApiService {
     ) : TopRatedTvShows
 
     suspend fun itemSearch(
-        @Query("api_key") apiKey: String = Constants.API_KEY,
         @Query("query") query: String,
-        @Query("page") page: Int
-    )
+        @Query("page") page: Int,
+        @Query("api_key") apiKey: String = Constants.API_KEY,
+    ) : SearchItem
 
 }

@@ -1,9 +1,7 @@
 package com.joel.movie.di
 
-import com.joel.movie.data.network.MovieApiService
-import com.joel.movie.data.network.TvApiService
+import com.joel.movie.data.network.ApiService
 import com.joel.movie.data.repository.MovieRepository
-import com.joel.movie.data.repository.TvRepository
 import com.joel.movie.utils.Constants
 import dagger.Module
 import dagger.Provides
@@ -29,7 +27,7 @@ object MovieModule {
 
     @Provides
     @Singleton
-    fun providesRetrofit(): MovieApiService {
+    fun providesRetrofit(): ApiService {
         val logging = HttpLoggingInterceptor()
         logging.level = HttpLoggingInterceptor.Level.BASIC
 
@@ -42,12 +40,12 @@ object MovieModule {
             .baseUrl(Constants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(MovieApiService::class.java)
+            .create(ApiService::class.java)
     }
 
     @Provides
     @Singleton
-    fun providesRepository(apiService: MovieApiService) : MovieRepository =  MovieRepository(apiService)
+    fun providesRepository(apiService: ApiService) : MovieRepository =  MovieRepository(apiService)
 
 //    @Provides
 //    @Singleton
