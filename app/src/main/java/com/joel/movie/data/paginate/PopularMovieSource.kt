@@ -47,7 +47,7 @@ class UpcomingMovieSource(
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, UpcomingResult> {
         return try {
-            val nextPage = params.key ?: 0
+            val nextPage = params.key ?: 1
             val response = repository.getUpcomingMovies(nextPage)
             LoadResult.Page(
                 data = response.results,
@@ -74,7 +74,7 @@ class TopRatedMovieSource(
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, TopRatedResult> {
        return try {
-           val nextPage = params.key ?: 0
+           val nextPage = params.key ?: 1
            val response = repository.getTopRatedMovies(nextPage)
            LoadResult.Page(
                data = response.results,

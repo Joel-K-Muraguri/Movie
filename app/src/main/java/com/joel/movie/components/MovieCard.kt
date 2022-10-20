@@ -20,18 +20,16 @@ import coil.compose.AsyncImagePainter
 import coil.compose.SubcomposeAsyncImage
 import coil.compose.SubcomposeAsyncImageContent
 import com.joel.movie.BuildConfig
-import com.joel.movie.destinations.MovieDetailsScreenDestination
 import com.joel.movie.model.responses.mvpopular.MovieResult
 import com.joel.movie.model.responses.topratedmovie.TopRatedResult
 import com.joel.movie.model.responses.upcomingmovie.UpcomingResult
 import com.joel.movie.navigation.BottomNav
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 @Composable
 
 fun PopularMovieCard(
     movie: MovieResult,
-    navigator: DestinationsNavigator
+
 ){
 
     val navController = rememberNavController()
@@ -42,7 +40,7 @@ fun PopularMovieCard(
         modifier = Modifier
             .padding(8.dp)
             .clickable {
-                navigator.navigate(MovieDetailsScreenDestination(movie.id))
+
             }
     ) {
         Card(

@@ -1,5 +1,6 @@
 package com.joel.movie.data.repository
 
+import android.util.Log
 import com.joel.movie.data.network.MovieApiService
 import com.joel.movie.model.responses.mvpopular.MoviePopular
 import com.joel.movie.model.responses.mvpopular.MovieResult
@@ -16,17 +17,20 @@ class MovieRepository @Inject constructor(
 )  {
 
     suspend fun getPopularMovie(page: Int): MoviePopular {
-        delay(3000L)
+        delay(1500L)
         return apiService.getPopularMovies(page)
     }
 
     suspend fun getUpcomingMovies(page: Int) : UpcomingMovie {
-        delay(3000L)
-        return apiService.getUpcomingMovies(page)
+
+        delay(1500L)
+        val response = apiService.getUpcomingMovies(page)
+        Log.d("DISPLAY::", "response.toString()")
+        return response
     }
 
     suspend fun getTopRatedMovies(page: Int) : TopRatedMovie {
-        delay(3000L)
+        delay(1500L)
         return apiService.getTopRatedMovies(page)
     }
 

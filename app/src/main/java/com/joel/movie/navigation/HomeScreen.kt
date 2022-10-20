@@ -26,11 +26,10 @@ fun HomeScreen(){
                 BottomBar(navController = navController)
             },
         ) {
-
+            BottomNavGraph(navController = navController)
 
         }
     }
-
 
 }
 

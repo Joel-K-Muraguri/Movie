@@ -15,7 +15,7 @@ import com.joel.movie.components.MovieUpcomingItems
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 @Composable
-fun PopularScreen(navigator: DestinationsNavigator){
+fun PopularScreen(){
 
     Surface(
         modifier = Modifier.fillMaxSize()
@@ -30,7 +30,7 @@ fun PopularScreen(navigator: DestinationsNavigator){
         ) {
             MovieUpcomingItems()
 
-            MoviePopularItems(navigator = navigator)
+            MoviePopularItems()
 
             MovieTopRatedItems()
         }

@@ -25,19 +25,19 @@ fun BottomNavGraph(
         composable(BottomNav.Home.route) {
             MainScreen()
         }
-        composable(
-            "${Constants.DETAILS_ROUTE}/{movieId}/{title}",
-            arguments = listOf(
-                navArgument("movieId"){
-                    type = NavType.IntType
-                }
-            )
-        ){ backstackEntry ->
-//            backstackEntry.arguments?.getInt("movieId")?.let { movieId ->
-//                MovieDetailsScreen(movieId = movieId)
-//            }
-            MovieDetailsScreen(backstackEntry.arguments?.getInt("movieId") ?: 0)
-        }
+//        composable(
+//            "${Constants.DETAILS_ROUTE}/{movieId}/{title}",
+//            arguments = listOf(
+//                navArgument("movieId"){
+//                    type = NavType.IntType
+//                }
+//            )
+//        ){ backstackEntry ->
+////            backstackEntry.arguments?.getInt("movieId")?.let { movieId ->
+////                MovieDetailsScreen(movieId = movieId)
+////            }
+//            MovieDetailsScreen(backstackEntry.arguments?.getInt("movieId") ?: 0)
+//        }
         composable(BottomNav.Search.route) {
             SearchScreen()
         }

@@ -26,7 +26,7 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.flow.Flow
 
 @Composable
-fun MoviePopularItems(mainViewModel : MainViewModel = hiltViewModel(), navigator: DestinationsNavigator){
+fun MoviePopularItems(mainViewModel : MainViewModel = hiltViewModel(), ){
     Box(contentAlignment = Alignment.Center) {
         Column() {
             Text(
@@ -34,7 +34,7 @@ fun MoviePopularItems(mainViewModel : MainViewModel = hiltViewModel(), navigator
                 style = MaterialTheme.typography.h6
             )
             Spacer(modifier = Modifier.height(4.dp))
-            MoviePopularList(popularMovies = mainViewModel.popularMovies, navigator)
+            MoviePopularList(popularMovies = mainViewModel.popularMovies, )
         }
     }
 }
@@ -42,7 +42,7 @@ fun MoviePopularItems(mainViewModel : MainViewModel = hiltViewModel(), navigator
 @Composable
 fun MoviePopularList(
     popularMovies : Flow<PagingData<MovieResult>>,
-    navigator : DestinationsNavigator
+
 ){
     val lazyMovieItems = popularMovies.collectAsLazyPagingItems()
     val navController = rememberNavController()
@@ -53,7 +53,6 @@ fun MoviePopularList(
         items(lazyMovieItems){ movie ->
             PopularMovieCard(
                 movie = movie!!,
-                navigator = navigator
 
             )
         }

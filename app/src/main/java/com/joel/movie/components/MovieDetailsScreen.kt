@@ -14,9 +14,8 @@ import com.joel.movie.data.paginate.ScreenLoading
 import com.joel.movie.data.repository.DetailsViewModel
 import com.joel.movie.data.repository.ResourceHandler
 import com.joel.movie.model.responses.mvpopular.MovieResult
-import com.ramcosta.composedestinations.annotation.Destination
 
-@Destination
+
 @Composable
 fun MovieDetailsScreen(
     movieId: Int,

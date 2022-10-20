@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun MovieScreen(){
 
-    Log.d("DISPLAY::","MovieScreen" )
+//    Log.d("DISPLAY::","MovieScreen" )
     Box(
         modifier = Modifier
             .fillMaxSize(),
@@ -26,7 +26,6 @@ fun MovieScreen(){
             color = Color.Black
         )
     }
-
 }
 
 @Preview(showBackground = true)
