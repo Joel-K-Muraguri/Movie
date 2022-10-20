@@ -1,7 +1,9 @@
 package com.joel.movie.di
 
 import com.joel.movie.data.network.MovieApiService
+import com.joel.movie.data.network.TvApiService
 import com.joel.movie.data.repository.MovieRepository
+import com.joel.movie.data.repository.TvRepository
 import com.joel.movie.utils.Constants
 import dagger.Module
 import dagger.Provides
@@ -46,5 +48,9 @@ object MovieModule {
     @Provides
     @Singleton
     fun providesRepository(apiService: MovieApiService) : MovieRepository =  MovieRepository(apiService)
+
+//    @Provides
+//    @Singleton
+//    fun providesTvRepository(apiService: TvApiService) : TvRepository = TvRepository(apiService)
 
 }

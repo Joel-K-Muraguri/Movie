@@ -5,6 +5,8 @@ import com.joel.movie.data.network.MovieApiService
 import com.joel.movie.model.responses.mvpopular.MoviePopular
 import com.joel.movie.model.responses.mvpopular.MovieResult
 import com.joel.movie.model.responses.topratedmovie.TopRatedMovie
+import com.joel.movie.model.responses.topratedtv.TopRatedTvShows
+import com.joel.movie.model.responses.tvpopular.TvPopular
 import com.joel.movie.model.responses.upcomingmovie.UpcomingMovie
 import kotlinx.coroutines.delay
 import retrofit2.HttpException
@@ -58,4 +60,12 @@ class MovieRepository @Inject constructor(
         return ResourceHandler.Success(response)
     }
 
+
+    suspend fun getPopularTvShows(page: Int): TvPopular {
+        return apiService.getPopularTvShow(page)
+    }
+
+    suspend fun getTopRatedTvShows(page : Int): TopRatedTvShows {
+        return apiService.getTopRatedTvShow(page)
+    }
 }
