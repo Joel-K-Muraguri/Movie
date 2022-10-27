@@ -56,13 +56,14 @@ fun MovieUpcomingList(
                 loadState.refresh is LoadState.Loading -> {
                     item {
                         Box(
-                            contentAlignment = Alignment.Center
+                            contentAlignment = Alignment.Center,
+                            modifier = Modifier.fillMaxWidth()
                         ) {
                             CircularProgressIndicator(
                                 modifier = Modifier
-                                    .fillParentMaxSize()
                                     .scale(0.5f)
-                                    .align(Alignment.Center),
+                                    .align(Alignment.Center)
+                                    .fillMaxWidth(),
                                 color = Color.Yellow
                             )
                         }

@@ -55,12 +55,13 @@ fun MovieTopRatedList(
                 loadState.refresh is LoadState.Loading -> {
                     item {
                         Box(
-                            contentAlignment = Alignment.Center
+                            contentAlignment = Alignment.Center,
+                            modifier = Modifier.fillMaxWidth()
                         ) {
                             CircularProgressIndicator(
                                 modifier = Modifier
-                                    .fillParentMaxSize()
                                     .scale(0.5f)
+                                    .fillMaxWidth()
                                     .align(Alignment.Center),
                                 color = Color.Yellow
                             )
