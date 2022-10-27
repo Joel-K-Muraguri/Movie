@@ -1,5 +1,6 @@
 package com.joel.movie.components
 
+import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -23,7 +24,7 @@ import com.joel.movie.BuildConfig
 import com.joel.movie.model.responses.mvpopular.MovieResult
 import com.joel.movie.model.responses.topratedmovie.TopRatedResult
 import com.joel.movie.model.responses.upcomingmovie.UpcomingResult
-import com.joel.movie.navigation.BottomNav
+import com.joel.movie.utils.Constants
 
 @Composable
 
@@ -40,7 +41,8 @@ fun PopularMovieCard(
         modifier = Modifier
             .padding(8.dp)
             .clickable {
-
+                Log.d("NAVIGATE::", "${movie.id}")
+                navController.navigate("${Constants.DETAILS_ROUTE}/${movie.id}")
             }
     ) {
         Card(
@@ -73,6 +75,12 @@ fun PopularMovieCard(
             }
         }
         Text(
+            text = "Release Date : ${movie.release_date}",
+            overflow = TextOverflow.Clip,
+            maxLines = 1,
+            fontSize = 14.sp,
+        )
+        Text(
             text = movie.title,
 //        style = MaterialTheme.typography.h6,
             overflow = TextOverflow.Clip,
@@ -86,7 +94,7 @@ fun PopularMovieCard(
 }
 
 @Composable
-fun UpcomingMovieCard(movie: UpcomingResult, ){
+fun UpcomingMovieCard(movie: UpcomingResult){
 
     val navController = rememberNavController()
     Column(
@@ -95,13 +103,17 @@ fun UpcomingMovieCard(movie: UpcomingResult, ){
         modifier = Modifier
             .padding(8.dp)
             .clickable {
-                navController.navigate("movieDetailScreen/${movie.id}"){
-                    popUpTo(BottomNav.Home.route){
-                        saveState = true
-                    }
-                    launchSingleTop = true
-                    restoreState = true
-                }
+
+                Log.d("NAVIGATE::", "${movie.id}")
+                navController.navigate("${Constants.DETAILS_ROUTE}/${movie.id}")
+
+//                navController.navigate("movieDetailScreen/${movie.id}"){
+//                    popUpTo(BottomNav.Home.route){
+//                        saveState = true
+//                    }
+//                    launchSingleTop = true
+//                    restoreState = true
+//                }
             }
     ) {
         Card(
@@ -133,6 +145,12 @@ fun UpcomingMovieCard(movie: UpcomingResult, ){
                 }
             }
         }
+        Text(
+            text = "Release Date : ${movie.release_date}",
+            overflow = TextOverflow.Clip,
+            maxLines = 1,
+            fontSize = 14.sp,
+        )
         Text(
             text = movie.title,
 //        style = MaterialTheme.typography.h6,
@@ -158,7 +176,8 @@ fun TopRatedMovieCard(
         modifier = Modifier
             .padding(8.dp)
             .clickable {
-
+                Log.d("NAVIGATE::", "${movie.id}")
+                navController.navigate("${Constants.DETAILS_ROUTE}/${movie.id}")
             }
     ) {
         Card(
@@ -191,14 +210,18 @@ fun TopRatedMovieCard(
             }
         }
         Text(
+            text = "Release Date : ${movie.release_date}",
+            overflow = TextOverflow.Clip,
+            maxLines = 1,
+            fontSize = 14.sp,
+        )
+        Text(
             text = movie.title,
 //        style = MaterialTheme.typography.h6,
             overflow = TextOverflow.Clip,
             maxLines = 2,
             fontSize = 14.sp,
-
             )
-
     }
 }
 

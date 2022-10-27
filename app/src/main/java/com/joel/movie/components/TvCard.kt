@@ -70,6 +70,12 @@ fun PopularTvCard(
             }
         }
         Text(
+            text = "First Air Date : ${tv.first_air_date}",
+            overflow = TextOverflow.Clip,
+             maxLines = 1,
+            fontSize = 14.sp,
+        )
+        Text(
             text = tv.name,
 //        style = MaterialTheme.typography.h6,
             overflow = TextOverflow.Clip,
@@ -127,6 +133,12 @@ fun TopRatedTvCard(
                 }
             }
         }
+        Text(
+            text = "First Air Date : ${tv.first_air_date}",
+            overflow = TextOverflow.Clip,
+            maxLines = 1,
+            fontSize = 14.sp,
+        )
         Text(
             text = tv.name,
 //        style = MaterialTheme.typography.h6,

@@ -47,9 +47,7 @@ fun MoviePopularList(
     val lazyMovieItems = popularMovies.collectAsLazyPagingItems()
     val navController = rememberNavController()
 
-    LazyRow(
-
-    ){
+    LazyRow {
         items(lazyMovieItems){ movie ->
             PopularMovieCard(
                 movie = movie!!,
@@ -67,7 +65,6 @@ fun MoviePopularList(
                         ) {
                             CircularProgressIndicator(
                                 modifier = Modifier
-                                    .fillParentMaxSize()
                                     .scale(0.5f)
                                     .align(Alignment.Center),
                                 color = Color.Yellow
