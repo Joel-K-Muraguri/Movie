@@ -8,6 +8,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
 import com.joel.movie.navigation.HomeScreen
+import com.joel.movie.navigation.NavGraph
 import com.joel.movie.ui.theme.MovieTheme
 import com.ramcosta.composedestinations.DestinationsNavHost
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,7 +22,9 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background) {
-                    HomeScreen()
+                    NavGraph(
+
+                    )
                 }
             }
         }

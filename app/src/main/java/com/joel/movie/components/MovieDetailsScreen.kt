@@ -1,5 +1,6 @@
 package com.joel.movie.components
 
+import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Text
@@ -13,7 +14,7 @@ import com.joel.movie.data.paginate.ErrorItem
 import com.joel.movie.data.paginate.ScreenLoading
 import com.joel.movie.data.repository.DetailsViewModel
 import com.joel.movie.data.repository.ResourceHandler
-import com.joel.movie.model.responses.mvpopular.MovieResult
+import com.joel.movie.model.responses.movie.MovieInfo
 
 
 @Composable
@@ -22,8 +23,9 @@ fun MovieDetailsScreen(
     detailsViewModel: DetailsViewModel = hiltViewModel(),
 ){
 
+    Log.d("DETAILS::" , "$movieId")
 
-    val movieInfo = produceState<ResourceHandler<MovieResult>>(initialValue = ResourceHandler.Loading()){
+    val movieInfo = produceState<ResourceHandler<MovieInfo>>(initialValue = ResourceHandler.Loading()){
         value = detailsViewModel.getMovieDetails(movieId = movieId)
     }.value
 
@@ -32,18 +34,18 @@ fun MovieDetailsScreen(
             .fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-        
+
         DetailsWrapper(movieInfo = movieInfo)
-        
+
     }
     
 }
 
 @Composable
 fun DetailsWrapper(
-    movieInfo : ResourceHandler<MovieResult>
-){
-    when(movieInfo){
+    movieInfo : ResourceHandler<MovieInfo>
+) {
+    when (movieInfo) {
         is ResourceHandler.Success -> {
             DetailsView(movie = movieInfo.data!!)
         }
@@ -53,34 +55,33 @@ fun DetailsWrapper(
                     .fillMaxSize(),
                 contentAlignment = Alignment.Center
             ) {
-                ScreenLoading() 
+                ScreenLoading()
             }
         }
-        
+
         is ResourceHandler.Error -> {
             ErrorItem(
-                onRetry = { /*TODO*/ }, 
+                onRetry = { /*TODO*/ },
                 error = movieInfo.message!!)
         }
 
     }
-    
 }
 
 
 @Composable
 fun DetailsView(
-    movie : MovieResult
-){
-    Box(
-        modifier = Modifier
-            .fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            text = movie.title,
-            fontSize = 30.sp
-        )
-    }
+    movie: MovieInfo
+) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                text = movie.title,
+                fontSize = 30.sp
+            )
+        }
 
 }
