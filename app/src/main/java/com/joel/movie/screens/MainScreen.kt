@@ -117,7 +117,7 @@ fun Tabs(
                 text = {
                     Text(
                         text = tabItem.title,
-                        color = Color.Black
+                        color = MaterialTheme.colors.onBackground
                     )
                 }
             )

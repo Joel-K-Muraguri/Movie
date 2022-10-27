@@ -35,7 +35,8 @@ fun MovieScreen(mainViewModel: MainViewModel = hiltViewModel()){
     Box(
         modifier = Modifier
             .fillMaxSize(),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
+
     ) {
         MovieItems(popularMovies = mainViewModel.popularMovies)
     }
