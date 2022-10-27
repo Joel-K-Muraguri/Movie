@@ -1,7 +1,8 @@
 package com.joel.movie.data.network
 
+import androidx.compose.runtime.MutableState
+import com.joel.movie.model.responses.movie.MovieInfo
 import com.joel.movie.model.responses.mvpopular.MoviePopular
-import com.joel.movie.model.responses.mvpopular.MovieResult
 import com.joel.movie.model.responses.search.SearchItem
 import com.joel.movie.model.responses.topratedmovie.TopRatedMovie
 import com.joel.movie.model.responses.topratedtv.TopRatedTvShows
@@ -36,9 +37,9 @@ interface ApiService {
 
     @GET("/3/movie/{movie_id}")
     suspend fun getMovieDetails(
-        @Path("movie_id") movieId : Int,
+        @Path("movie_id") movieId: MutableState<Int>,
         @Query("api_key") apiKey: String = Constants.API_KEY,
-    ) : MovieResult
+    ) : MovieInfo
 
     @GET("/3/tv/popular")
     suspend fun getPopularTvShow(
@@ -54,7 +55,7 @@ interface ApiService {
 
     suspend fun itemSearch(
         @Query("query") query: String,
-        @Query("page") page: Int,
+//        @Query("page") page: Int,
         @Query("api_key") apiKey: String = Constants.API_KEY,
     ) : SearchItem
 

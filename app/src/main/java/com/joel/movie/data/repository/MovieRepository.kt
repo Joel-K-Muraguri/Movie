@@ -1,9 +1,10 @@
 package com.joel.movie.data.repository
 
 import android.util.Log
+import androidx.compose.runtime.MutableState
 import com.joel.movie.data.network.ApiService
+import com.joel.movie.model.responses.movie.MovieInfo
 import com.joel.movie.model.responses.mvpopular.MoviePopular
-import com.joel.movie.model.responses.mvpopular.MovieResult
 import com.joel.movie.model.responses.search.SearchItem
 import com.joel.movie.model.responses.topratedmovie.TopRatedMovie
 import com.joel.movie.model.responses.topratedtv.TopRatedTvShows
@@ -38,7 +39,7 @@ class MovieRepository @Inject constructor(
     }
 
 
-    suspend fun getMovieDetails(movieId: Int): ResourceHandler<MovieResult> {
+    suspend fun getMovieDetails(movieId: MutableState<Int>): ResourceHandler<MovieInfo> {
         val response = try {
             apiService.getMovieDetails(
                 movieId = movieId
@@ -70,7 +71,7 @@ class MovieRepository @Inject constructor(
         return apiService.getTopRatedTvShow(page)
     }
 
-    suspend fun searchItems(page: Int, query : String) : SearchItem{
-        return apiService.itemSearch(query, page)
+    suspend fun searchItems( query : String) : SearchItem{
+        return apiService.itemSearch(query)
     }
 }

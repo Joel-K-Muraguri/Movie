@@ -8,18 +8,20 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.joel.movie.data.paginate.*
 import com.joel.movie.model.responses.mvpopular.MovieResult
+import com.joel.movie.model.responses.search.SearchResult
 import com.joel.movie.model.responses.topratedmovie.TopRatedResult
 import com.joel.movie.model.responses.topratedtv.TopRatedTvShowResult
 import com.joel.movie.model.responses.tvpopular.TvResult
 import com.joel.movie.model.responses.upcomingmovie.UpcomingResult
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val repository: MovieRepository,
-
     ) : ViewModel()  {
 
 
@@ -42,6 +44,18 @@ class MainViewModel @Inject constructor(
     val topRatedTvShows : Flow<PagingData<TopRatedTvShowResult>> = Pager(PagingConfig(pageSize = 20)){
         TopRatedTvSource(repository)
     }.flow.cachedIn(viewModelScope)
+
+    val searchItems : Flow<PagingData<SearchResult>> = Pager(PagingConfig(pageSize = 5)){
+        SearchSource(repository)
+    }.flow.cachedIn(viewModelScope)
+
+    fun searchItem(query : String){
+        viewModelScope.launch { Dispatchers.IO
+//         repository.searchItems(query = query,          )
+            repository.searchItems(query)
+
+        }
+    }
 
 
 
