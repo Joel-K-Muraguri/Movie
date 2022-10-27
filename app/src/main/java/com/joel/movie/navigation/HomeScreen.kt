@@ -20,7 +20,7 @@ fun HomeScreen(){
 
     val navController = rememberNavController()
 
-    Surface() {
+    Surface {
         Scaffold(
             bottomBar = {
                 BottomBar(navController = navController)
