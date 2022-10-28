@@ -1,5 +1,7 @@
 package com.joel.movie.data.repository
 
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
@@ -49,14 +51,29 @@ class MainViewModel @Inject constructor(
         SearchSource(repository)
     }.flow.cachedIn(viewModelScope)
 
+    val list : MutableState<MainState> = mutableStateOf(MainState())
+
     fun searchItem(query : String){
         viewModelScope.launch { Dispatchers.IO
-//         repository.searchItems(query = query,          )
-            repository.searchItems(query)
+            list.value = MainState(isLoading = true)
 
+            try {
+                val result = repository.searchItems(query)
+                when(result){
+                    is ResourceHandler.Error->{
+                        list.value = MainState(error = "Something went wrong")
+                    }
+                    is ResourceHandler.Success->{
+                        result.data?.results?.let {
+                            list.value = MainState(data = it)
+                        }
+                    }
+                }
+            }
+            catch (e : Exception){
+                list.value = MainState(error = "Something went wrong")
+
+            }
         }
     }
-
-
-
 }

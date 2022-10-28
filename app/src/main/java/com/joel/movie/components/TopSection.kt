@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -51,7 +52,7 @@ fun MenuItem(){
             Icon(
                 painter = painterResource(id = R.drawable.ic_baseline_menu_24),
                 contentDescription = "",
-                tint = Color.Black
+                tint = MaterialTheme.colors.onSurface
             )
         }
     }
@@ -78,8 +79,7 @@ fun User(){
                     .size(35.dp)
                     .fillMaxSize(),
                 contentDescription = "",
-                tint = Color.Black
-
+                tint = MaterialTheme.colors.onSurface
             )
         }
     }

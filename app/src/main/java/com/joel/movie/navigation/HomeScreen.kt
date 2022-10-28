@@ -28,10 +28,8 @@ fun HomeScreen(){
             contentColor = MaterialTheme.colors.background
         ) {
             BottomNavGraph(navController = navController)
-
         }
     }
-
 }
 
 
@@ -52,7 +50,6 @@ fun BottomBar(
 
     BottomAppBar(
         elevation = 5.dp,
-        backgroundColor = MaterialTheme.colors.background
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentDestination = navBackStackEntry?.destination

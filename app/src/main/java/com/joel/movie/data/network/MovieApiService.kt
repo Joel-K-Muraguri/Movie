@@ -53,6 +53,7 @@ interface ApiService {
         @Query("api_key") apiKey : String = Constants.API_KEY
     ) : TopRatedTvShows
 
+    @GET("/3/search/multi")
     suspend fun itemSearch(
         @Query("query") query: String,
 //        @Query("page") page: Int,

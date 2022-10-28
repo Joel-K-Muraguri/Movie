@@ -71,7 +71,12 @@ class MovieRepository @Inject constructor(
         return apiService.getTopRatedTvShow(page)
     }
 
-    suspend fun searchItems( query : String) : SearchItem{
-        return apiService.itemSearch(query)
+    suspend fun searchItems(query : String) : ResourceHandler<SearchItem>{
+        return  try{
+            val result = apiService.itemSearch(query = query)
+            ResourceHandler.Success(data = result)
+        }catch (e: java.lang.Exception){
+            ResourceHandler.Error(message = e.message.toString())
+        }
     }
 }

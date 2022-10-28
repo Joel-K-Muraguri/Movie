@@ -13,19 +13,26 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.joel.movie.data.repository.MainViewModel
+import com.joel.movie.ui.theme.YellowVariant
 import com.joel.movie.ui.theme.YellowishColor
 
 @Composable
-fun SearchAction(){
+fun SearchAction(
+    mainViewModel: MainViewModel = hiltViewModel(),
+    modifier: Modifier = Modifier
+){
 
-    var value by remember {
-        mutableStateOf("")
-    }
+
+    val query: MutableState<String> = remember { mutableStateOf("") }
+    val result = mainViewModel.list.value
 
     OutlinedTextField(
-        value = value,
+        value = query.value,
         onValueChange = {
-            value = it
+           query.value = it
+            mainViewModel.searchItem(query.value)
         },
         placeholder = {
             Row(
@@ -34,7 +41,7 @@ fun SearchAction(){
                 Icon(
                     imageVector = Icons.Filled.Search,
                     contentDescription = null,
-                    tint = YellowishColor
+                    tint = MaterialTheme.colors.primaryVariant
                 )
                Spacer(modifier = Modifier.width(6.dp))
                 Text(
